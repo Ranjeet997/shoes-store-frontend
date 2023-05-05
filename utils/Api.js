@@ -1,0 +1,30 @@
+import { API_URL, STRAPI_API_TOKEN } from "./Urls";
+
+export const fetchDataFromApi = async (endpoints) =>{
+    const options = {
+        method: "GET",
+        headers: {
+            Authorization: "Bearer " + STRAPI_API_TOKEN,
+        },
+    }
+    const res = await fetch(`${API_URL}${endpoints}`, options);
+    const data = await res.json();
+    
+    return data;
+}
+
+export const makePaymentRequest = async (endpoints, payload) =>{
+    const options = {
+        method: "POST",
+        headers: {
+            Authorization: "Bearer " + STRAPI_API_TOKEN,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    }
+    const res = await fetch(`${API_URL}${endpoints}`, options);
+    const data = await res.json();
+    
+    return data;
+}
+
